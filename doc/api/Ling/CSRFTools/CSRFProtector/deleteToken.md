@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::deleteToken](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L238-L241)
+See the source code for method [CSRFProtector::deleteToken](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L246-L249)
 
 
 See Also

@@ -96,6 +96,8 @@ Once you know how your application works, the solution should be quite obvious.
 
 The delete method
 -------------
+I would recommend not to use it, but...
+
 Why is there a deleteToken method?
 
 Imagine you have a simple ajax communication you want to secure.
@@ -127,6 +129,13 @@ the token would be stale (or more precisely it wouldn't exist anymore), and so t
 
 Now it's not always possible (depending on your design) to call the deleteToken method, but on ajax calls it's certainly always possible.
 In fact with forms it might be complicated some time, because you might delete a token that needs to be there, your mileage might vary...
+
+
+Now why not using it:
+I tried it in practice with an ajax script: and it turns out if your user executes the ajax action more than
+once, the actions after the first one will be denied.
+So, maybe there is a very specific case where you can get away with the deleteToken method, but in general
+it's too restrictive and I didn't found a concrete use yet.
 
 
 

@@ -57,7 +57,7 @@ Returns bool.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::isValid](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L213-L230)
+See the source code for method [CSRFProtector::isValid](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L221-L238)
 
 
 See Also

@@ -104,7 +104,6 @@ $tokenValue = $_GET['token'];
 
 $protector = CSRFProtector::inst();
 if (true === $protector->isValid("my_token", $tokenValue, true)) {
-    $protector->deleteToken("my_token"); // this is optional, use this if you are paranoïd, see my notes in the CSRFProtector class for more details.
     a("execute a secure action");
 }
 
@@ -339,6 +338,10 @@ It's like a specific name associated with a token.
 History Log
 =============
 
+- 1.1.1 -- 2019-08-05
+
+    - update documentation
+    
 - 1.1.0 -- 2019-08-05
 
     - update nomenclature: tokenName, tokenValue are now used
