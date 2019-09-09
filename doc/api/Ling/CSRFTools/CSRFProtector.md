@@ -4,7 +4,7 @@
 
 The CSRFProtector class
 ================
-2019-04-11 --> 2019-08-05
+2019-04-11 --> 2019-09-09
 
 
 
@@ -148,14 +148,19 @@ class <span class="pl-k">CSRFProtector</span>  {
 - Properties
     - private static [Ling\CSRFTools\CSRFProtector](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector.md) [$inst](#property-inst) ;
     - protected string [$sessionName](#property-sessionName) ;
+    - protected bool [$usePage](#property-usePage) ;
 
 - Methods
     - public static [inst](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/inst.md)() : [CSRFProtector](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector.md)
     - private [__construct](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/__construct.md)() : void
+    - public [setUsePage](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/setUsePage.md)(bool $usePage) : void
     - public [createToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/createToken.md)(string $tokenName) : string
     - public [isValid](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/isValid.md)(string $tokenName, string $tokenValue, bool $useNewSlot = false) : bool
     - public [deleteToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deleteToken.md)(string $tokenName) : void
+    - public [deletePageUnusedTokens](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deletePageUnusedTokens.md)() : void
     - protected [startSession](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/startSession.md)() : void
+    - protected [addTokenForPage](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/addTokenForPage.md)(string $tokenName) : void
+    - protected [getPageId](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/getPageId.md)() : string
 
 }
 
@@ -182,6 +187,13 @@ Properties
     
     
 
+- <span id="property-usePage"><b>usePage</b></span>
+
+    This property holds the usePage for this instance.
+    See the [page security conception notes](https://github.com/lingtalfi/CSRFTools/blob/master/doc/pages/page-security-conception-notes.md) for more details.
+    
+    
+
 
 
 Methods
@@ -189,10 +201,14 @@ Methods
 
 - [CSRFProtector::inst](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/inst.md) &ndash; Gets the singleton instance for this class.
 - [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/__construct.md) &ndash; Builds the CSRFProtector instance.
+- [CSRFProtector::setUsePage](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/setUsePage.md) &ndash; Sets the usePage.
 - [CSRFProtector::createToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/createToken.md) &ndash; Creates the token named $tokenName, stores its value in the "new" slot, and returns the token value.
 - [CSRFProtector::isValid](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/isValid.md) &ndash; Returns whether the given $tokenName exists and has the given $tokenValue.
 - [CSRFProtector::deleteToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deleteToken.md) &ndash; Deletes the given $tokenName.
+- [CSRFProtector::deletePageUnusedTokens](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deletePageUnusedTokens.md) &ndash; Deletes the tokens that are not associated with the current page.
 - [CSRFProtector::startSession](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/startSession.md) &ndash; Ensures that the php session has started.
+- [CSRFProtector::addTokenForPage](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/addTokenForPage.md) &ndash; Adds a token to the pages array.
+- [CSRFProtector::getPageId](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/getPageId.md) &ndash; Returns the current page id.
 
 
 

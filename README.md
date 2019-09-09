@@ -35,6 +35,8 @@ Summary
     - [The attack example](#the-attack-example)
 - [The defense against CSRF](#the-defense-against-csrf)
 - [A quick word about concurrent CSRF tokens](#a-quick-word-about-concurrent-csrf-tokens)
+- [The CSRF tutorial](https://github.com/lingtalfi/CSRFTools/blob/master/doc/pages/csrf-tutorial.md)
+- [Pages security conception notes](https://github.com/lingtalfi/CSRFTools/blob/master/doc/pages/pages-security-conception-notes.md)
 
 
 
@@ -338,6 +340,10 @@ It's like a specific name associated with a token.
 History Log
 =============
 
+- 1.2.0 -- 2019-09-09
+
+    - added pages security system
+    
 - 1.1.1 -- 2019-08-05
 
     - update documentation

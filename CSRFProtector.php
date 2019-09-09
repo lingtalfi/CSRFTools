@@ -157,6 +157,13 @@ class CSRFProtector
      */
     protected $sessionName;
 
+    /**
+     * This property holds the usePage for this instance.
+     * See the @page(page security conception notes) for more details.
+     * @var bool=true
+     */
+    protected $usePage;
+
 
     /**
      * Gets the singleton instance for this class.
@@ -181,7 +188,18 @@ class CSRFProtector
     {
 
         $this->sessionName = "csrf_tools_token";
+        $this->usePage = true;
         $this->startSession();
+    }
+
+    /**
+     * Sets the usePage.
+     *
+     * @param bool $usePage
+     */
+    public function setUsePage(bool $usePage)
+    {
+        $this->usePage = $usePage;
     }
 
 
@@ -191,6 +209,10 @@ class CSRFProtector
      * while the old "new" value (found in the "new" slot before it was replaced) is moved to the "old" slot.
      *
      * For more details, please refer to this class description.
+     *
+     * The following token names are reserved for internal use and must not be used:
+     *
+     * - __pages__
      *
      *
      * @param string $tokenName
@@ -205,6 +227,9 @@ class CSRFProtector
 
         $token = md5(uniqid());
         $_SESSION[$this->sessionName][$tokenName]['new'] = $token;
+        if (true === $this->usePage) {
+            $this->addTokenForPage($tokenName);
+        }
         return $token;
     }
 
@@ -220,8 +245,8 @@ class CSRFProtector
      */
     public function isValid(string $tokenName, string $tokenValue, bool $useNewSlot = false): bool
     {
-
         if (array_key_exists($tokenName, $_SESSION[$this->sessionName])) {
+            $tokenValue = trim($tokenValue);
             if (false === $useNewSlot) {
                 if (array_key_exists("old", $_SESSION[$this->sessionName][$tokenName])) {
                     $res = ($tokenValue === $_SESSION[$this->sessionName][$tokenName]["old"]);
@@ -245,8 +270,27 @@ class CSRFProtector
      */
     public function deleteToken(string $tokenName)
     {
+        $this->startSession();
         unset($_SESSION[$this->sessionName][$tokenName]);
     }
+
+
+    /**
+     * Deletes the tokens that are not associated with the current page.
+     *
+     */
+    public function deletePageUnusedTokens()
+    {
+        $this->startSession();
+        $pageId = $this->getPageId();
+        $pages = $_SESSION[$this->sessionName]['__pages__'];
+        unset($pages[$pageId]);
+        array_walk_recursive($pages, function ($tokenName) {
+            unset($_SESSION[$this->sessionName][$tokenName]);
+        });
+    }
+
+
 
     //--------------------------------------------
     //
@@ -260,7 +304,39 @@ class CSRFProtector
             session_start();
         }
         if (false === array_key_exists($this->sessionName, $_SESSION)) {
-            $_SESSION[$this->sessionName] = [];
+            $_SESSION[$this->sessionName] = [
+                '__pages__' => [],
+            ];
         }
+    }
+
+
+    /**
+     * Adds a token to the pages array.
+     *
+     * @param string $tokenName
+     */
+    protected function addTokenForPage(string $tokenName)
+    {
+        $pages = $_SESSION[$this->sessionName]['__pages__'] ?? [];
+        $pageId = $this->getPageId();
+        if (false === array_key_exists($pageId, $pages)) {
+            $pages[$pageId] = [];
+        }
+
+        if (false === in_array($tokenName, $pages[$pageId])) {
+            $pages[$pageId][] = $tokenName;
+            $_SESSION[$this->sessionName]['__pages__'] = $pages;
+        }
+    }
+
+
+    /**
+     * Returns the current page id.
+     * @return string
+     */
+    protected function getPageId(): string
+    {
+        return $_SERVER['REQUEST_URI'];
     }
 }

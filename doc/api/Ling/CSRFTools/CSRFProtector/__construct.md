@@ -47,7 +47,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L180-L185)
+See the source code for method [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L187-L193)
 
 
 See Also
@@ -55,5 +55,5 @@ See Also
 
 The [CSRFProtector](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector.md) class.
 
-Previous method: [inst](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/inst.md)<br>Next method: [createToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/createToken.md)<br>
+Previous method: [inst](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/inst.md)<br>Next method: [setUsePage](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/setUsePage.md)<br>
 
