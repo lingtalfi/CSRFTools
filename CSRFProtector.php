@@ -46,86 +46,29 @@ namespace Ling\CSRFTools;
  * - the first time to display the form to the user
  * - the second time to test the posted data against some validation mechanism
  *
- * Usually, to protect a form against CSRF, the developer will create a page which calls the two main methods of this class:
- * - createToken
- * - isValid
  *
- * Now in which order those methods will be called depends on the coding style of the developer, it could be:
+ * And so the first time we create the token and it goes to the new slot.
+ * And the second time, we want to validate the token, but a new token has been regenerated (since we posted the form
+ * and the page has been refreshed), and so we want to validate the token against the old slot.
  *
- * - createToken
- * - isValid
  *
- * or
+ * Now  which slot you want to validate against really depends on your application and your concrete case.
  *
- * - isValid
- * - createToken
+ * For instance for csrf protected backend services accessed via ajax, we generally want to use the new slot all the time.
+ * When the user calls the page, we generate the token, but when he calls the service via ajax, the page generating the token
+ * has not been recalled, and so the token is still in the "new slot".
  *
- * In the first case, where createToken is called before isValid, because the page is called twice,
- * we can see that the first time the page is called (when the form is just displayed), the token is created, and the isValid method
- * is probably not relevant at this stage (i.e. without posted data).
- * Now when the user posts the page via http post, the page is reloaded and the createToken method is called again BEFORE the isValid method
- * is called, which means the token is different than the one the user posted.
+ * That's why the isValid method let you choose which slot you want to validate against.
  *
- * Now that's exactly the reason why this class uses the "old" slot: because in this precise case you need to validate the posted CSRF token
- * against the old token value (created during the first invocation of the page, when the form was just displayed), not against the new value.
- *
- * Hopefully this gives you an insight about why there are two slots.
- * Now which slot you want to validate against really depends on your application and your concrete case.
- *
- * For a simple validation between two separate pages, for instance a page A.php that creates the token, and an ajax B.php page that
- * calls the isValid method, then the B.php page needs to validate against the new value, since the createToken method has only been called once.
- *
- * In the case of the form with the isValid method being called first, since the creation of the token is the last (relevant to this
- * discussion) thing the page does, then we can validate against the new slot.
- *
- * So, validating against the new or the old slot is the main question you should ask yourself before using this class.
- * This requires an understanding of how your application is wired.
- * Once you know how your application works, the solution should be quite obvious.
  *
  *
  *
  * The delete method
  * -------------
- * I would recommend not to use it, but...
  *
- * Why is there a deleteToken method?
- *
- * Imagine you have a simple ajax communication you want to secure.
- * A.php is the script which creates the token (createToken is called).
- * B.php is the ajax script which validates/un-validates the token (isValid is called).
- *
- * Imagine a legit user does its thing, and A.php is invoked, which in turns calls B.php.
- * The user gets its action done, and everything is fine.
- * Except that now the token is still in the user session.
- *
- * Which means there is still a small chance that a malicious user could impersonate the user:
- * if the malicious user can make the gentle user to click a link to B.php with the right token (I know, that sounds
- * almost impossible, but just imagine), then assuming the user session is still active, the action would technically
- * be re-executed.
- *
- * Now in practise, although I'm not a security expert, I believe it's almost impossible for a malicious user
- * to guess the random token, and so this extra precaution is maybe too much, but for those of you who are paranoid,
- * if you want to do everything you can to make it harder for the malicious users, then by destroying the token
- * after having it validated by the regular user, you remove this tiny risk.
- *
- * So basically, the algo in B.php would look like this:
- *
- * - if $csrfProtector->isValid
- * -    $csrfProtector->deleteToken
- * -    // do the secure action
- *
- * And because the token won't exist in the session anymore, even if the malicious user managed to know the right token,
- * the token would be stale (or more precisely it wouldn't exist anymore), and so the secure action will not be executed again.
- *
- * Now it's not always possible (depending on your design) to call the deleteToken method, but on ajax calls it's certainly always possible.
- * In fact with forms it might be complicated some time, because you might delete a token that needs to be there, your mileage might vary...
- *
- *
- * Now why not using it:
- * I tried it in practice with an ajax script: and it turns out if your user executes the ajax action more than
- * once, the actions after the first one will be denied.
- * So, maybe there is a very specific case where you can get away with the deleteToken method, but in general
- * it's too restrictive and I didn't found a concrete use yet.
+ * I would recommend using it wherever you can, because it completely prevents an attacker from guessing the token.
+ * However in some cases, the token cannot be deleted otherwise your own users cannot use them.
+ * So, you have to assess the situation for yourself, and decide whether you should use the delete method.
  *
  *
  *
@@ -235,6 +178,23 @@ class CSRFProtector
 
 
     /**
+     * Returns whether the token identified by the given tokenName is already stored in the session.
+     *
+     *
+     * @param string $tokenName
+     * @return bool
+     */
+    public function hasToken(string $tokenName): bool
+    {
+        $this->startSession();
+        if (array_key_exists($tokenName, $_SESSION[$this->sessionName])) {
+            return array_key_exists($tokenName, $_SESSION[$this->sessionName]);
+        }
+        return false;
+    }
+
+
+    /**
      * Returns whether the given $tokenName exists and has the given $tokenValue.
      *
      *
@@ -245,6 +205,7 @@ class CSRFProtector
      */
     public function isValid(string $tokenName, string $tokenValue, bool $useNewSlot = false): bool
     {
+        $this->startSession();
         if (array_key_exists($tokenName, $_SESSION[$this->sessionName])) {
             $tokenValue = trim($tokenValue);
             if (false === $useNewSlot) {

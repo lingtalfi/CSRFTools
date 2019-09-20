@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::addTokenForPage](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L319-L331)
+See the source code for method [CSRFProtector::addTokenForPage](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L280-L292)
 
 
 See Also

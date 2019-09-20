@@ -340,6 +340,11 @@ It's like a specific name associated with a token.
 History Log
 =============
 
+- 1.3.0 -- 2019-09-20
+
+    - add the idea of symbolic token
+    - add CSRFProtector->hasToken method
+    
 - 1.2.1 -- 2019-09-09
 
     - fix doc link

@@ -47,7 +47,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L187-L193)
+See the source code for method [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L130-L136)
 
 
 See Also
