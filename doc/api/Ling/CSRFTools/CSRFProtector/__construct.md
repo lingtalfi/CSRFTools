@@ -16,13 +16,12 @@ Description
 ================
 
 
-private [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/__construct.md)() : void
+public [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/__construct.md)() : void
 
 
 
 
 Builds the CSRFProtector instance.
-Notice that it's private.
 
 
 
@@ -47,7 +46,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L130-L136)
+See the source code for method [CSRFProtector::__construct](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L129-L135)
 
 
 See Also

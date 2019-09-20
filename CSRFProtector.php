@@ -6,7 +6,7 @@ namespace Ling\CSRFTools;
 /**
  * The CSRFProtector class.
  *
- * This class is a singleton.
+ * This class can be used as a singleton, or as a regular class (it's an hybrid).
  *
  *
  * How this class works
@@ -125,9 +125,8 @@ class CSRFProtector
 
     /**
      * Builds the CSRFProtector instance.
-     * Notice that it's private.
      */
-    private function __construct()
+    public function __construct()
     {
 
         $this->sessionName = "csrf_tools_token";

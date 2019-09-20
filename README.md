@@ -340,6 +340,10 @@ It's like a specific name associated with a token.
 History Log
 =============
 
+- 1.4.0 -- 2019-09-20
+
+    - update CSRFProtector can now be used as a regular class (i.e. not only as a singleton)
+
 - 1.3.0 -- 2019-09-20
 
     - add the idea of symbolic token

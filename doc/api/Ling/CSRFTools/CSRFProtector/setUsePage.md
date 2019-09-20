@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::setUsePage](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L143-L146)
+See the source code for method [CSRFProtector::setUsePage](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L142-L145)
 
 
 See Also

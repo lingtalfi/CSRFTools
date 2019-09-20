@@ -16,7 +16,7 @@ Introduction
 
 The CSRFProtector class.
 
-This class is a singleton.
+This class can be used as a singleton, or as a regular class (it's an hybrid).
 
 
 How this class works
@@ -95,7 +95,7 @@ class <span class="pl-k">CSRFProtector</span>  {
 
 - Methods
     - public static [inst](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/inst.md)() : [CSRFProtector](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector.md)
-    - private [__construct](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/__construct.md)() : void
+    - public [__construct](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/__construct.md)() : void
     - public [setUsePage](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/setUsePage.md)(bool $usePage) : void
     - public [createToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/createToken.md)(string $tokenName) : string
     - public [hasToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/hasToken.md)(string $tokenName) : bool
