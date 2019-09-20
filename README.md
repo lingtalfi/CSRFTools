@@ -340,6 +340,10 @@ It's like a specific name associated with a token.
 History Log
 =============
 
+- 1.5.1 -- 2019-09-20
+
+    - fix CSRFProtector->deletePageUnusedTokens removing tokens of the actual page in some cases (assuming page system on)
+    
 - 1.5.0 -- 2019-09-20
 
     - update CSRFProtector->dump method

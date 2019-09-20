@@ -46,7 +46,7 @@ Returns [CSRFProtector](https://github.com/lingtalfi/CSRFTools/blob/master/doc/a
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::inst](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L120-L126)
+See the source code for method [CSRFProtector::inst](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L119-L125)
 
 
 See Also

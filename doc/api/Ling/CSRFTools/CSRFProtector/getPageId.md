@@ -46,7 +46,7 @@ Returns string.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::getPageId](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L312-L315)
+See the source code for method [CSRFProtector::getPageId](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L342-L345)
 
 
 See Also

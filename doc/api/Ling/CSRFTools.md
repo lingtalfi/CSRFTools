@@ -18,11 +18,11 @@ Table of contents
     - [CSRFProtector::deleteToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deleteToken.md) &ndash; Deletes the given $tokenName.
     - [CSRFProtector::deletePageUnusedTokens](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deletePageUnusedTokens.md) &ndash; Deletes the tokens that are not associated with the current page.
     - [CSRFProtector::dump](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/dump.md) &ndash; Returns a debug string of the php session content.
+    - [CSRFProtector::cleanSession](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/cleanSession.md) &ndash; Cleans the session.
 
 
 Dependencies
 ============
 - [ArrayToString](https://github.com/lingtalfi/ArrayToString)
-- [Bat](https://github.com/lingtalfi/Bat)
 
 

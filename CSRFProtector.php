@@ -4,7 +4,6 @@ namespace Ling\CSRFTools;
 
 
 use Ling\ArrayToString\ArrayToStringTool;
-use Ling\Bat\DebugTool;
 
 /**
  * The CSRFProtector class.
@@ -247,9 +246,30 @@ class CSRFProtector
         $this->startSession();
         $pageId = $this->getPageId();
         $pages = $_SESSION[$this->sessionName]['__pages__'];
+
+
+        /**
+         * I had this issue where the system thought it was another page, and so deleted tokens that were on the
+         * actual page.
+         *
+         * To reproduce:
+         *
+         * - browse /reset.php to clean all session variables
+         * - browse /user/profile?d   (create a fake get variable to make the old system think it's another page)
+         * - log in, and now browse /user/profile. As you browse /user/profile, the old system was removing the current
+         *          tokens, because /user/profile?d is different than /user/profile, but it shouldn't because we
+         *          actually use the tokens on the page. Anyway, this is fixed simply by protecting the tokens
+         *          on the current page (variable currentTokens below).
+         *
+         *
+         *
+         */
+        $currentTokens = $pages[$pageId] ?? [];
         unset($pages[$pageId]);
-        array_walk_recursive($pages, function ($tokenName) {
-            unset($_SESSION[$this->sessionName][$tokenName]);
+        array_walk_recursive($pages, function ($tokenName) use ($currentTokens) {
+            if (false === in_array($tokenName, $currentTokens, true)) {
+                unset($_SESSION[$this->sessionName][$tokenName]);
+            }
         });
     }
 
@@ -263,6 +283,16 @@ class CSRFProtector
     {
         $this->startSession();
         return ArrayToStringTool::toPhpArray($_SESSION[$this->sessionName]);
+    }
+
+
+    /**
+     * Cleans the session.
+     */
+    public function cleanSession()
+    {
+        $this->startSession();
+        unset($_SESSION[$this->sessionName]);
     }
 
 

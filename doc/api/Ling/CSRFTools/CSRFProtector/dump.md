@@ -46,7 +46,7 @@ Returns string.
 
 Source Code
 ===========
-See the source code for method [CSRFProtector::dump](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L262-L266)
+See the source code for method [CSRFProtector::dump](https://github.com/lingtalfi/CSRFTools/blob/master/CSRFProtector.php#L282-L286)
 
 
 See Also
@@ -54,5 +54,5 @@ See Also
 
 The [CSRFProtector](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector.md) class.
 
-Previous method: [deletePageUnusedTokens](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deletePageUnusedTokens.md)<br>Next method: [startSession](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/startSession.md)<br>
+Previous method: [deletePageUnusedTokens](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deletePageUnusedTokens.md)<br>Next method: [cleanSession](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/cleanSession.md)<br>
 
