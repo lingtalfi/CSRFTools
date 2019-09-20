@@ -102,6 +102,7 @@ class <span class="pl-k">CSRFProtector</span>  {
     - public [isValid](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/isValid.md)(string $tokenName, string $tokenValue, bool $useNewSlot = false) : bool
     - public [deleteToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deleteToken.md)(string $tokenName) : void
     - public [deletePageUnusedTokens](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deletePageUnusedTokens.md)() : void
+    - public [dump](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/dump.md)() : string
     - protected [startSession](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/startSession.md)() : void
     - protected [addTokenForPage](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/addTokenForPage.md)(string $tokenName) : void
     - protected [getPageId](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/getPageId.md)() : string
@@ -151,6 +152,7 @@ Methods
 - [CSRFProtector::isValid](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/isValid.md) &ndash; Returns whether the given $tokenName exists and has the given $tokenValue.
 - [CSRFProtector::deleteToken](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deleteToken.md) &ndash; Deletes the given $tokenName.
 - [CSRFProtector::deletePageUnusedTokens](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/deletePageUnusedTokens.md) &ndash; Deletes the tokens that are not associated with the current page.
+- [CSRFProtector::dump](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/dump.md) &ndash; Returns a debug string of the php session content.
 - [CSRFProtector::startSession](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/startSession.md) &ndash; Ensures that the php session has started.
 - [CSRFProtector::addTokenForPage](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/addTokenForPage.md) &ndash; Adds a token to the pages array.
 - [CSRFProtector::getPageId](https://github.com/lingtalfi/CSRFTools/blob/master/doc/api/Ling/CSRFTools/CSRFProtector/getPageId.md) &ndash; Returns the current page id.

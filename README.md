@@ -340,6 +340,10 @@ It's like a specific name associated with a token.
 History Log
 =============
 
+- 1.5.0 -- 2019-09-20
+
+    - update CSRFProtector->dump method
+
 - 1.4.0 -- 2019-09-20
 
     - update CSRFProtector can now be used as a regular class (i.e. not only as a singleton)

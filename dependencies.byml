@@ -1,2 +1,7 @@
-dependencies: []
+dependencies: 
+    Ling: 
+        - ArrayToString
+        - Bat
+    
+
 post_install: []

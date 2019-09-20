@@ -3,6 +3,9 @@
 namespace Ling\CSRFTools;
 
 
+use Ling\ArrayToString\ArrayToStringTool;
+use Ling\Bat\DebugTool;
+
 /**
  * The CSRFProtector class.
  *
@@ -250,6 +253,17 @@ class CSRFProtector
         });
     }
 
+
+    /**
+     * Returns a debug string of the php session content.
+     *
+     * @return string
+     */
+    public function dump(): string
+    {
+        $this->startSession();
+        return ArrayToStringTool::toPhpArray($_SESSION[$this->sessionName]);
+    }
 
 
     //--------------------------------------------
