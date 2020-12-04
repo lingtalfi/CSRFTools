@@ -340,6 +340,10 @@ It's like a specific name associated with a token.
 History Log
 =============
 
+- 1.5.2 -- 2020-12-04
+
+    - Add lpi-deps.byml file
+
 - 1.5.1 -- 2019-09-20
 
     - fix CSRFProtector->deletePageUnusedTokens removing tokens of the actual page in some cases (assuming page system on)
